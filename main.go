@@ -1,14 +1,21 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 
 	"users-api/database"
 	"users-api/handlers"
 )
 
 func main() {
+	if err := godotenv.Load(); err != nil {
+		log.Println("arquivo .env não encontrado, usando variáveis de ambiente do sistema")
+	}
+
 	database.Connect()
 
 	r := gin.Default()
